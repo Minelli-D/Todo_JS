@@ -1,2 +1,2 @@
 # todo_list
-Practices during my studies in JS. :D
+Practices during my studies in JS :D
