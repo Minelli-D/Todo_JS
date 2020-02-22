@@ -35,7 +35,7 @@ function new_row(text, done, _id){
     
     let empty_div = document.createElement('div');
     empty_div.textContent = text;
-    empty_div.setAttribute('_id',_id);
+    empty_div.setAttribute('name',_id);
     done ? empty_div.style.cssText = "width:100%; text-decoration:line-through" : empty_div.style.cssText = "width:100%;";
     div_main.appendChild(empty_div);
     

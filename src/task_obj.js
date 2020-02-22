@@ -1,11 +1,17 @@
+var items = JSON.parse(localStorage.getItem('div-testinput') || "[]");
+var _id = localStorage.getItem('_last_id') === null ? 0 : localStorage.getItem('_last_id')  ;
+
+
 function Task(name_task){
     this.name = name_task;
     this.done = 0; 
     this.delete = 0;
-    this.id = items.length ;
+    this.id = _id ;
+    let app = Number(_id) + 1;
+    localStorage.setItem('_last_id',app);
+    _id = app;
 }
 
-var items = JSON.parse(localStorage.getItem('div-testinput') || "[]");
 
 function add_new_task(div){
 
@@ -23,15 +29,22 @@ function show_task(){
 
 
 function task_done(_id){
-    if(items[_id]['done'])
-    //TODO: DINAMIC CHANGE WHEN TASK IS COMPLETE
+    if(items[_id]['done']){
         items[_id]['done'] = 0;
-    else
+        let div = document.getElementsByName(String(_id));
+        div[0].style.cssText = "width:100%; text-decoration:none"
+
+    }
+    else{
         items[_id]['done'] = 1;
+        let div = document.getElementsByName(String(_id));
+        div[0].style.cssText = "width:100%; text-decoration:line-through"
+
+    }
     localStorage.setItem('div-testinput', JSON.stringify(items));
 }
 
-
+//FIXME: Delete doesn't work. No Dynamically
 function task_delete(_id){
     if(_id > -1)
         items.splice(_id,1);
