@@ -44,9 +44,9 @@ function task_done(_id){
     localStorage.setItem('div-testinput', JSON.stringify(items));
 }
 
-//FIXME: Delete doesn't work. No Dynamically
 function task_delete(_id){
-    if(_id > -1)
-        items.splice(_id,1);
+    items.splice(_id,1);
+    let div = document.getElementsByName(String(_id));
+    div[0].parentElement.remove()
     localStorage.setItem('div-testinput', JSON.stringify(items));
 }
