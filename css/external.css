@@ -82,3 +82,11 @@ font-family:Arial;
 border:1px solid white;
 
 }
+
+.div_row:hover{
+  background-color:#6666;
+}
+
+.edit_task{
+  background-color: violet;
+}

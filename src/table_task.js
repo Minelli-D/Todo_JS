@@ -29,10 +29,33 @@ function create_task_button(div_main, class_button, class_span, _id,delete_var =
     div_main.appendChild(button_row);
 }
 
+function task_description(){
+
+}
+
+
+
 function new_row(text, done, _id){
     let div_main = document.createElement('div');
-    div_main.setAttribute('class','activities main');
-    
+    div_main.setAttribute('class','activities main div_row');
+    //FIXME: Click on button of div do the describe task .
+
+    div_main.onclick = () =>{
+        
+            let div_c = document.getElementsByClassName('edit_task')
+            console.log(div_c.length)
+            if(div_c.length){
+                div_c[0].remove()
+                one = 1 
+            }
+            let div = document.createElement('div');
+            div.setAttribute('class','edit_task');
+            binary_search(_id)
+            div.textContent = items[index_returned]['name']
+            container[0].appendChild(div);
+        
+    }
+
     let empty_div = document.createElement('div');
     empty_div.textContent = text;
     empty_div.setAttribute('name',_id);
@@ -73,5 +96,5 @@ function add_new_item(){
 
 function remove_add_item(){
     container[0].removeChild(div);
-}
+}   
 show_task();

@@ -1,6 +1,14 @@
 var items = JSON.parse(localStorage.getItem('div-testinput') || "[]");
 var _id = localStorage.getItem('_last_id') === null ? 0 : localStorage.getItem('_last_id')  ;
+var index_returned = 0
 
+
+function binary_search(_id){
+    items.forEach(function(element,index) {
+        if(element['id'] == _id)
+            index_returned = index
+    })
+}
 
 function Task(name_task){
     this.name = name_task;
@@ -29,14 +37,16 @@ function show_task(){
 
 
 function task_done(_id){
-    if(items[_id]['done']){
-        items[_id]['done'] = 0;
+    binary_search(_id);
+    console.log(index_returned)
+    if(items[index_returned]['done']){
+        items[index_returned]['done'] = 0;
         let div = document.getElementsByName(String(_id));
         div[0].style.cssText = "width:100%; text-decoration:none"
 
     }
     else{
-        items[_id]['done'] = 1;
+        items[index_returned]['done'] = 1;
         let div = document.getElementsByName(String(_id));
         div[0].style.cssText = "width:100%; text-decoration:line-through"
 
