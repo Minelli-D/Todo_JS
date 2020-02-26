@@ -38,7 +38,7 @@ function task_description(){
 function new_row(text, done, _id){
     let div_main = document.createElement('div');
     div_main.setAttribute('class','activities main div_row');
-    //FIXME: DELETE AFTER ON CLICK ? Y 
+    //FIXME: Click on button of div do the describe task .
 
     div_main.onclick = () =>{
         
