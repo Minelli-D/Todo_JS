@@ -31,8 +31,23 @@ function create_task_button(div_main, class_button, class_span, _id,delete_var =
 
 function new_row(text, done, _id){
     let div_main = document.createElement('div');
-    div_main.setAttribute('class','activities main');
-    
+    div_main.setAttribute('class','activities main div_row');
+    //FIXME: DELETE AFTER ON CLICK ? 
+    let test = ()=> {
+        let one = 0; 
+        let div_c = document.getElementsByClassName('edit_task')
+        if(div_c.length){
+            div_c[0].remove()
+            one = 1 
+        }
+        let div = document.createElement('div');
+        div.setAttribute('class','edit_task');
+        div.textContent = one ? 'testamobile' : 'ahia'
+        container[0].appendChild(div);
+        //div_main.removeEventListener('click',test)
+    };
+    div_main.addEventListener('click', test)
+
     let empty_div = document.createElement('div');
     empty_div.textContent = text;
     empty_div.setAttribute('name',_id);
@@ -73,5 +88,5 @@ function add_new_item(){
 
 function remove_add_item(){
     container[0].removeChild(div);
-}
+}   
 show_task();
