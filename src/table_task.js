@@ -33,13 +33,7 @@ function task_description(){
 
 }
 
-
-
-function new_row(text, done, _id){
-    let div_main = document.createElement('div');
-    div_main.setAttribute('class','activities main div_row');
-    //FIXME: Click on button of div do the describe task .
-
+function row_label(text,_id){
     let empty_div = document.createElement('div');
     empty_div.textContent = text;
     empty_div.setAttribute('name',_id);
@@ -55,8 +49,19 @@ function new_row(text, done, _id){
         binary_search(_id)
         div.textContent = items[index_returned]['name']
         container[0].appendChild(div);
+    }
+    return empty_div
     
 }
+
+
+function new_row(text, done, _id){
+    let div_main = document.createElement('div');
+    div_main.setAttribute('class','activities main div_row');
+    //FIXME: Click on button of div do the describe task .
+
+    let empty_div = row_label(text,_id)
+    
     done ? empty_div.style.cssText = "width:100%; text-decoration:line-through" : empty_div.style.cssText = "width:100%;";
     div_main.appendChild(empty_div);
     
