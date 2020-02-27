@@ -58,16 +58,18 @@ function row_label(text,_id){
 function new_row(text, done, _id){
     let div_main = document.createElement('div');
     div_main.setAttribute('class','activities main div_row');
-    //FIXME: Click on button of div do the describe task .
 
+    // ROW TEXT LABEL 
     let empty_div = row_label(text,_id)
     
     done ? empty_div.style.cssText = "width:100%; text-decoration:line-through" : empty_div.style.cssText = "width:100%;";
     div_main.appendChild(empty_div);
     
+    // ROW BUTTON 
     create_task_button(div_main,'action_button green', 'fas fa-check-circle',_id)
     create_task_button(div_main,'action_button danger', 'fas fa-times-circle',_id,1)
 
+    // Create column two 
     let column1 = document.getElementsByClassName('column ltwo');
     column1[0].appendChild(div_main);
 
@@ -92,9 +94,9 @@ button_type.onclick = function (){
 
 //    ACTION ITEM
 function add_new_item(){
-    container[0].appendChild(div);
-    div.appendChild(input_type);
-    div.appendChild(button_type);
+    container[0].insertBefore(div, container[0].firstChild);
+    div.insertBefore(input_type, div.firstChild);
+    div.insertBefore(button_type, div.firstChild);
 }
 
 function remove_add_item(){
