@@ -33,7 +33,19 @@ function task_description(div){
     //Content 
     //Where
     //Time
-    div.textContent = items[index_returned]['time'][4];
+    div1 = document.createElement('div')
+    div2 = document.createElement('div')      
+    div3 = document.createElement('div')      
+
+    div.style.cssText = "display:flex"
+
+    div1.style.cssText = "flex:1"
+    div2.style.cssText = "flex:2"     
+
+    div1.textContent = 'Time: ' 
+    div2.textContent = items[index_returned]['time'][4];
+    div.appendChild(div1)
+    div.appendChild(div2)
     
 }
 
