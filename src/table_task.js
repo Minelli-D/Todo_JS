@@ -29,8 +29,12 @@ function create_task_button(div_main, class_button, class_span, _id,delete_var =
     div_main.appendChild(button_row);
 }
 
-function task_description(){
-
+function task_description(div){
+    //Content 
+    //Where
+    //Time
+    div.textContent = items[index_returned]['time'][4];
+    
 }
 
 function row_label(text,_id){
@@ -46,8 +50,10 @@ function row_label(text,_id){
         }
         let div = document.createElement('div');
         div.setAttribute('class','edit_task');
+        //Div Description On Click
         binary_search(_id)
-        div.textContent = items[index_returned]['name']
+        task_description(div)
+        //div.textContent = items[index_returned]['name']
         container[0].appendChild(div);
     }
     return empty_div
@@ -95,8 +101,8 @@ button_type.onclick = function (){
 //    ACTION ITEM
 function add_new_item(){
     container[0].insertBefore(div, container[0].firstChild);
-    div.insertBefore(input_type, div.firstChild);
-    div.insertBefore(button_type, div.firstChild);
+    div.appendChild(input_type, div.firstChild);
+    div.appendChild(button_type, div.firstChild);
 }
 
 function remove_add_item(){

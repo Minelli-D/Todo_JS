@@ -9,11 +9,20 @@ function binary_search(_id){
             index_returned = index
     })
 }
+function edit_date(time){
+    string = time.toString()
+    string = string.split(' ',5)
+    return string
+}
+
 
 function Task(name_task){
     this.name = name_task;
     this.done = 0; 
     this.delete = 0;
+
+    this.time = new Date('10 Sept 2020');
+    this.time = edit_date(this.time)
     this.id = _id ;
     let app = Number(_id) + 1;
     localStorage.setItem('_last_id',app);
