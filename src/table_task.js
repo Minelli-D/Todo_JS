@@ -4,8 +4,7 @@ let container = document.getElementsByClassName('column lone');
 let div = document.createElement('div');
 div.setAttribute('class','row');
 
-let input_type = document.createElement('input');
-input_type.className = 'input_type';
+
 
 
 function create_task_button(div_main, class_button, class_span, _id,delete_var = 0){
@@ -34,18 +33,24 @@ function task_description(div){
     //Where
     //Time
     div1 = document.createElement('div')
-    div2 = document.createElement('div')      
+    div2 = document.createElement('div') 
     div3 = document.createElement('div')      
+    div4 = document.createElement('div')     
 
-    div.style.cssText = "display:flex"
+    div3.style.cssText = "display:flex"
 
     div1.style.cssText = "flex:1"
     div2.style.cssText = "flex:2"     
 
     div1.textContent = 'Time: ' 
-    div2.textContent = items[index_returned]['time'][4];
-    div.appendChild(div1)
-    div.appendChild(div2)
+    div2.textContent = items[this.index_returned]['time'][4];
+    div4.textContent = items[this.index_returned]['content'];
+
+    div3.appendChild(div1)
+    div3.appendChild(div2)
+    div.appendChild(div3)
+    div.appendChild(div4)
+
     
 }
 
@@ -73,7 +78,8 @@ function row_label(text,_id){
 }
 
 
-function new_row(text, done, _id){
+function new_row(text, done = 0, _id){
+    console.log(text)
     let div_main = document.createElement('div');
     div_main.setAttribute('class','activities main div_row');
 
@@ -93,7 +99,13 @@ function new_row(text, done, _id){
 
 
 }
-//      BUTTON TYPE
+
+
+//      ADD NEW ITEM VAR TYPE
+let input_type = document.createElement('input');
+input_type.className = 'input_type';
+let input_type_content = document.createElement('input');
+input_type_content.setAttribute('class','content');
 let button_type = document.createElement('button');
 button_type.classList = 'button_type';
 button_type.textContent = 'save';
@@ -101,9 +113,12 @@ button_type.textContent = 'save';
 button_type.onclick = function (){
 
         let div = document.getElementsByClassName('input_type')[0].value;
+        let array = new Array()
+        array.push(div)
+        div = document.getElementsByClassName('content')[0].value;
+        array.push(div)
         if(div != ''){
-                add_new_task(div);
-                new_row(div);
+                new_row(array[0], null ,add_new_task(array));
             }
         else
             console.log('null');
@@ -114,6 +129,7 @@ button_type.onclick = function (){
 function add_new_item(){
     container[0].insertBefore(div, container[0].firstChild);
     div.appendChild(input_type, div.firstChild);
+    div.appendChild(input_type_content, div.firstChild);
     div.appendChild(button_type, div.firstChild);
 }
 

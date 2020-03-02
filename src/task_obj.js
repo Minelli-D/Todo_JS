@@ -2,20 +2,21 @@ var items = JSON.parse(localStorage.getItem('div-testinput') || "[]");
 var _id = localStorage.getItem('_last_id') === null ? 0 : localStorage.getItem('_last_id')  ;
 var index_returned = 0
 
-
+// BINARY SEARCH FOR SET CUR _ID
 function binary_search(_id){
     items.forEach(function(element,index) {
         if(element['id'] == _id)
-            index_returned = index
+            this.index_returned = index
     })
 }
+
 function edit_date(time){
     string = time.toString()
     string = string.split(' ',5)
     return string
 }
 
-
+// COSTRUCTOR 
 function Task(name_task){
     this.name = name_task;
     this.done = 0; 
@@ -25,16 +26,21 @@ function Task(name_task){
     this.time = edit_date(this.time)
     this.id = _id ;
     let app = Number(_id) + 1;
+
+
+    this.content = ''
+
     localStorage.setItem('_last_id',app);
     _id = app;
 }
 
 
 function add_new_task(div){
-
-    let obj = new Task(div);
+    let obj = new Task(String(div[0]));
+    obj.content = String(div[1]);
     items.push(obj);
     localStorage.setItem('div-testinput', JSON.stringify(items));
+    return obj['id']
 
 }
 
