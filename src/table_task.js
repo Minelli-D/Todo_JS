@@ -14,15 +14,11 @@ function create_task_button(div_main, class_button, class_span, _id,delete_var =
     let span_row = document.createElement('span');
 
     items = JSON.parse(localStorage.getItem('div-testinput') || "[]");
-    console.dir(items)
-    let index_returned = binary_search(_id)
-
-    console.log('index_returned '+index_returned)
 
     button_row.setAttribute('class',class_button)
     button_row.onclick = function () {
         if(delete_var){
-            task_delete(index_returned,_id);
+            task_delete(binary_search(_id),_id);
         }
         else{
             task_done(index_returned);

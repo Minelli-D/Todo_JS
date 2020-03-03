@@ -8,6 +8,7 @@ function binary_search(_id){
         if(element['id'] == _id)
             this.index_returned = index
     })
+    return this.index_returned
 }
 
 function edit_date(time){
@@ -24,7 +25,7 @@ function Task(name_task){
 
     this.time = new Date('10 Sept 2020');
     this.time = edit_date(this.time)
-    this.id = _id ;
+    this.id = Number(_id) ;
     let app = Number(_id) + 1;
 
 
@@ -70,14 +71,24 @@ function task_done(_id){
 }
 
 
+function delete_array(_id){
+    array = new Array()
+    console.log('d-a '+_id)
+    items.forEach(element => {
+        if(element['_id'] !== _id){
+            
+            array.push(element)
+        }
+    });
+    this.items = array
+}
+
+
 function task_delete(index, _id){
-    console.dir(items)
-    console.log(index)
-    console.log('deleted'+_id)
-    items.splice(index,1);
+    items.splice(index,1)
     let div = document.getElementsByName(String(_id));
     div[0].parentElement.remove()
     localStorage.setItem('div-testinput', JSON.stringify(items));
-    console.dir(items)
+    console.dir('INDEX '+index)
 
 }
