@@ -36,11 +36,12 @@ function Task(name_task){
 
 
 function add_new_task(div){
-    let obj = new Task(String(div[0]));
+    let obj = new Task(div[0]);
     obj.content = String(div[1]);
     items.push(obj);
     localStorage.setItem('div-testinput', JSON.stringify(items));
     return obj['id']
+    
 
 }
 
@@ -53,7 +54,6 @@ function show_task(){
 
 function task_done(_id){
     binary_search(_id);
-    console.log(index_returned)
     if(items[index_returned]['done']){
         items[index_returned]['done'] = 0;
         let div = document.getElementsByName(String(_id));
@@ -69,9 +69,15 @@ function task_done(_id){
     localStorage.setItem('div-testinput', JSON.stringify(items));
 }
 
-function task_delete(_id){
-    items.splice(_id,1);
+
+function task_delete(index, _id){
+    console.dir(items)
+    console.log(index)
+    console.log('deleted'+_id)
+    items.splice(index,1);
     let div = document.getElementsByName(String(_id));
     div[0].parentElement.remove()
     localStorage.setItem('div-testinput', JSON.stringify(items));
+    console.dir(items)
+
 }

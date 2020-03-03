@@ -8,17 +8,24 @@ div.setAttribute('class','row');
 
 
 function create_task_button(div_main, class_button, class_span, _id,delete_var = 0){
+
     //let button_div_row = document.createElement('div');
     let button_row = document.createElement('button');
     let span_row = document.createElement('span');
-    
+
+    items = JSON.parse(localStorage.getItem('div-testinput') || "[]");
+    console.dir(items)
+    let index_returned = binary_search(_id)
+
+    console.log('index_returned '+index_returned)
+
     button_row.setAttribute('class',class_button)
     button_row.onclick = function () {
         if(delete_var){
-            task_delete(_id);
+            task_delete(index_returned,_id);
         }
         else{
-            task_done(_id);
+            task_done(index_returned);
         }
     };
     span_row.setAttribute('class',class_span)
@@ -79,7 +86,6 @@ function row_label(text,_id){
 
 
 function new_row(text, done = 0, _id){
-    console.log(text)
     let div_main = document.createElement('div');
     div_main.setAttribute('class','activities main div_row');
 
