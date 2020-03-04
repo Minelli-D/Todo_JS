@@ -2,7 +2,7 @@
 let html = document.querySelector('html');
 let container = document.getElementsByClassName('column lone');
 let div = document.createElement('div');
-div.setAttribute('class',' row_task scale-up-hor-right');
+div.setAttribute('class',' row_task scale-up-ver-center');
 
 
 
@@ -51,6 +51,7 @@ function task_description(div){
 
     div3.appendChild(div1)
     div3.appendChild(div2)
+
     div.appendChild(div3)
     div.appendChild(div4)
 
