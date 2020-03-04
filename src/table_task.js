@@ -21,7 +21,7 @@ function create_task_button(div_main, class_button, class_span, _id,delete_var =
             task_delete(binary_search(_id),_id);
         }
         else{
-            task_done(index_returned);
+            task_done(binary_search(_id));
         }
     };
     span_row.setAttribute('class',class_span)
@@ -92,7 +92,7 @@ function new_row(text, done = 0, _id){
     div_main.appendChild(empty_div);
     
     // ROW BUTTON 
-    create_task_button(div_main,'action_button green', 'fas fa-check-circle',_id)
+    create_task_button(div_main,'action_button green', 'fas fa-check-circle',_id, 0)
     create_task_button(div_main,'action_button danger', 'fas fa-times-circle',_id,1)
 
     // Create column two 

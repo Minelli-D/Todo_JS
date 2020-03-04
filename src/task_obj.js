@@ -5,7 +5,7 @@ var index_returned = 0
 // BINARY SEARCH FOR SET CUR _ID
 function binary_search(_id){
     items.forEach(function(element,index) {
-        if(element['id'] == _id)
+        if(element['id'] === Number(_id))
             this.index_returned = index
     })
     return this.index_returned
@@ -57,13 +57,15 @@ function task_done(_id){
     binary_search(_id);
     if(items[index_returned]['done']){
         items[index_returned]['done'] = 0;
-        let div = document.getElementsByName(String(_id));
+        let div = document.getElementsByName(items[index_returned]['id']);
         div[0].style.cssText = "width:100%; text-decoration:none"
-
+        console.log(div)
     }
     else{
         items[index_returned]['done'] = 1;
-        let div = document.getElementsByName(String(_id));
+        let div = document.getElementsByName(items[index_returned]['id']);
+        console.log(div)
+
         div[0].style.cssText = "width:100%; text-decoration:line-through"
 
     }
@@ -73,7 +75,6 @@ function task_done(_id){
 
 function delete_array(_id){
     array = new Array()
-    console.log('d-a '+_id)
     items.forEach(element => {
         if(element['_id'] !== _id){
             
@@ -89,6 +90,4 @@ function task_delete(index, _id){
     let div = document.getElementsByName(String(_id));
     div[0].parentElement.remove()
     localStorage.setItem('div-testinput', JSON.stringify(items));
-    console.dir('INDEX '+index)
-
 }
