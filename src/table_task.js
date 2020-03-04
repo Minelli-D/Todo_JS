@@ -131,7 +131,7 @@ button_type.onclick = function (){
 let h3 = document.createElement('h3')
 h3.textContent = 'Add Activities'
 let div_head = document.createElement('div')
-div_head.setAttribute("class","div_head")
+div_head.setAttribute('class','div_head')
 
 //    ACTION ITEM
 function add_new_item(){
