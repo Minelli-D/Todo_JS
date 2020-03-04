@@ -2,7 +2,7 @@
 let html = document.querySelector('html');
 let container = document.getElementsByClassName('column lone');
 let div = document.createElement('div');
-div.setAttribute('class','row');
+div.setAttribute('class',' row_task scale-up-hor-right');
 
 
 
@@ -69,7 +69,7 @@ function row_label(text,_id){
             one = 1     
         }
         let div = document.createElement('div');
-        div.setAttribute('class','edit_task');
+        div.setAttribute('class','edit_task scale-up-hor-right');
         //Div Description On Click
         binary_search(_id)
         task_description(div)
@@ -129,10 +129,29 @@ button_type.onclick = function (){
 
 //    ACTION ITEM
 function add_new_item(){
+    let div_head = document.createElement('div')
+    let h3 = document.createElement('h3')
+    div_head.style.justifyContent = 'center'
+    div_head.style.margin = '-20px'
+    div_head.style.marginBottom = '-5px'
+    h3.textContent = 'Add Activities'
+    div_head.appendChild(h3)
+    let div1 = document.createElement('div')
+    let div2 = document.createElement('div')
+    div_head.setAttribute('class','row');
+    div1.setAttribute('class','row');
+    div2.setAttribute('class','row');
+
+    div.appendChild(div_head)
+    div2.appendChild(input_type);
+    div2.appendChild(input_type_content);
+   
+    div.appendChild(div2)
+
     container[0].insertBefore(div, container[0].firstChild);
-    div.appendChild(input_type, div.firstChild);
-    div.appendChild(input_type_content, div.firstChild);
-    div.appendChild(button_type, div.firstChild);
+
+    div1.appendChild(button_type);
+    div.appendChild(div1)
 }
 
 function remove_add_item(){
