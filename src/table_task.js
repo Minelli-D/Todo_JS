@@ -127,14 +127,16 @@ button_type.onclick = function (){
         
 }
 
+let h3 = document.createElement('h3')
+h3.textContent = 'Add Activities'
+let div_head = document.createElement('div')
+div_head.style.justifyContent = 'center'
+div_head.style.margin = '-20px'
+div_head.style.marginBottom = '-5px'
+
 //    ACTION ITEM
 function add_new_item(){
-    let div_head = document.createElement('div')
-    let h3 = document.createElement('h3')
-    div_head.style.justifyContent = 'center'
-    div_head.style.margin = '-20px'
-    div_head.style.marginBottom = '-5px'
-    h3.textContent = 'Add Activities'
+
     div_head.appendChild(h3)
     let div1 = document.createElement('div')
     let div2 = document.createElement('div')
