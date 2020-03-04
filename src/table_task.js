@@ -55,11 +55,11 @@ function task_description(div){
 function delete_if_task_exist(){
 
     let div_c = document.getElementsByClassName('edit_task')
-
-    div_c.length ? div_c[0].remove() : null
-        
     let div = document.createElement('div');
     div.setAttribute('class','edit_task scale-up-hor-right');
+
+    div_c.length ? div_c[0].remove() : {}
+        
     return div 
 
 }
@@ -90,7 +90,8 @@ function new_row(text, done = 0, _id){
     // ROW TEXT LABEL 
     let empty_div = row_label(text,_id)
     
-    done ? empty_div.style.cssText = "width:100%; text-decoration:line-through" : empty_div.style.cssText = "width:100%;";
+    //done ? empty_div.setAttribute('class','done') : empty_div.setAttribute('class','undone') 
+    done ? empty_div.style.cssText = "width:100%; text-decoration:line-through;" : empty_div.style.cssText = "width:100%;";
     div_main.appendChild(empty_div);
     
     // ROW BUTTON 
@@ -108,8 +109,10 @@ function new_row(text, done = 0, _id){
 //      ADD NEW ITEM VAR TYPE
 let input_type = document.createElement('input');
 input_type.className = 'input_type';
+
 let input_type_content = document.createElement('input');
 input_type_content.setAttribute('class','content');
+
 let button_type = document.createElement('button');
 button_type.classList = 'button_type';
 button_type.textContent = 'save';
@@ -121,20 +124,14 @@ button_type.onclick = function (){
         array.push(div)
         div = document.getElementsByClassName('content')[0].value;
         array.push(div)
-        if(div != ''){
-                new_row(array[0], null ,add_new_task(array));
-            }
-        else
-            console.log('null');
         
+        div !== '' ? new_row(array[0], null ,add_new_task(array)) : {};       
 }
 
 let h3 = document.createElement('h3')
 h3.textContent = 'Add Activities'
 let div_head = document.createElement('div')
-div_head.style.justifyContent = 'center'
-div_head.style.margin = '-20px'
-div_head.style.marginBottom = '-5px'
+div_head.setAttribute("class","div_head")
 
 //    ACTION ITEM
 function add_new_item(){

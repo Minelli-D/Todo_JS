@@ -5,8 +5,7 @@ var index_returned = 0
 // BINARY SEARCH FOR SET CUR _ID
 function binary_search(_id){
     items.forEach(function(element,index) {
-        if(element['id'] === Number(_id))
-            this.index_returned = index
+        element['id'] === Number(_id) ? this.index_returned = index : {}
     })
     return this.index_returned
 }
@@ -27,8 +26,7 @@ function Task(name_task){
     this.time = edit_date(this.time)
     this.id = Number(_id) ;
     let app = Number(_id) + 1;
-
-
+    
     this.content = ''
 
     localStorage.setItem('_last_id',app);
@@ -59,15 +57,11 @@ function task_done(_id){
         items[index_returned]['done'] = 0;
         let div = document.getElementsByName(items[index_returned]['id']);
         div[0].style.cssText = "width:100%; text-decoration:none"
-        console.log(div)
     }
     else{
         items[index_returned]['done'] = 1;
         let div = document.getElementsByName(items[index_returned]['id']);
-        console.log(div)
-
         div[0].style.cssText = "width:100%; text-decoration:line-through"
-
     }
     localStorage.setItem('div-testinput', JSON.stringify(items));
 }
