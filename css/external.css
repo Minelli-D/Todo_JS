@@ -2,6 +2,7 @@
 .header{
     font-size: 70px;
     justify-content: center;
+    -webkit-animation:colorchange 20s infinite alternate;
 }
 .row {
     display: flex;
@@ -99,4 +100,19 @@ font-family:Arial;
 
 .edit_task{
   background-color: violet;
+}
+
+@-webkit-keyframes colorchange {
+  0% {
+    color: #0a0aa8;
+  }
+  30% {
+      color: #34495e;
+  }
+  60% {
+      color: #19199ec7;
+  }
+  90% {
+      color: #2980b9;
+  }
 }
