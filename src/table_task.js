@@ -9,25 +9,19 @@ div.setAttribute('class',' row_task scale-up-ver-center');
 
 function create_task_button(div_main, class_button, class_span, _id,delete_var = 0){
 
-    //let button_div_row = document.createElement('div');
-    let button_row = document.createElement('button');
-    let span_row = document.createElement('span');
+    let button_row = document.createElement('button')
+    button_row.setAttribute('class',class_button)
+
+    let span_row = document.createElement('span')
+    span_row.setAttribute('class',class_span)
 
     items = JSON.parse(localStorage.getItem('div-testinput') || "[]");
 
-    button_row.setAttribute('class',class_button)
-    button_row.onclick = function () {
-        if(delete_var){
-            task_delete(binary_search(_id),_id);
-        }
-        else{
-            task_done(binary_search(_id));
-        }
+    button_row.onclick = () => {
+        delete_var ? task_delete(binary_search(_id),_id) :task_done(binary_search(_id))
     };
-    span_row.setAttribute('class',class_span)
 
     button_row.appendChild(span_row)
-    //button_div_row.appendChild(button_row)
     div_main.appendChild(button_row);
 }
 
@@ -58,23 +52,30 @@ function task_description(div){
     
 }
 
+function delete_if_task_exist(){
+
+    let div_c = document.getElementsByClassName('edit_task')
+
+    div_c.length ? div_c[0].remove() : null
+        
+    let div = document.createElement('div');
+    div.setAttribute('class','edit_task scale-up-hor-right');
+    return div 
+
+}
+
 function row_label(text,_id){
     let empty_div = document.createElement('div');
     empty_div.textContent = text;
     empty_div.setAttribute('name',_id);
     empty_div.onclick = () =>{
         
-        let div_c = document.getElementsByClassName('edit_task')
-        if(div_c.length){
-            div_c[0].remove()
-            one = 1     
-        }
-        let div = document.createElement('div');
-        div.setAttribute('class','edit_task scale-up-hor-right');
+        let div = delete_if_task_exist()
+
         //Div Description On Click
         binary_search(_id)
         task_description(div)
-        //div.textContent = items[index_returned]['name']
+
         container[0].appendChild(div);
     }
     return empty_div
