@@ -128,18 +128,18 @@ button_type.onclick = function (){
         div !== '' ? new_row(array[0], null ,add_new_task(array)) : {};       
 }
 
-let h3 = document.createElement('h3')
-h3.textContent = 'Add Activities'
-let div_head = document.createElement('div')
-div_head.setAttribute('class','div_head')
+let h3 = document.createElement('h3');
+h3.textContent = 'Add Activities';
+let div_head = document.createElement('div');
+div_head.setAttribute('class','row div_head');
+div_head.appendChild(h3);
+
 
 //    ACTION ITEM
 function add_new_item(){
 
-    div_head.appendChild(h3)
     let div1 = document.createElement('div')
     let div2 = document.createElement('div')
-    div_head.setAttribute('class','row');
     div1.setAttribute('class','row');
     div2.setAttribute('class','row');
 
