@@ -75,9 +75,10 @@ function card_composition(task){
     let box = document.createElement('div')
     box.setAttribute('class','edit_task scale-up-hor-right')
     array.push(card_head('Task Type'))
-    array.push(card_body())
-    array.push(card_input())
-    array.push(card_content('span','a'))
+    /*array.push(card_body())
+    array.push(card_input())*/
+    array.push(card_content('name',task.name))
+    array.push(card_content('content',task.content))
     append_to_element(array,box)
     container[0].appendChild(box)
 }

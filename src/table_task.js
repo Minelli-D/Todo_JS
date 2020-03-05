@@ -24,52 +24,9 @@ function create_task_button(task_button){
     task_button.div_main.appendChild(button_row);
 }
 
-function task_description(div){
-    //Content 
-    //Where
-    //Time
-    array = new Array()
-    let div_head = document.createElement('div')
-
-    let h1_head = document.createElement('h2')
-    h1_head.textContent = 'test'
-    div_head.appendChild(h1_head)
- 
-    let div1 = document.createElement('div')
-    let div2 = document.createElement('div') 
-    let div3 = document.createElement('div')      
-    let div4 = document.createElement('div')     
-
-    div3.style.cssText = "display:flex"
-
-    div1.style.cssText = "flex:1"
-    div2.style.cssText = "flex:2"     
-
-    div1.textContent = 'Time: ' 
-    div2.textContent = items[this.index_returned]['time'][4];
-    div4.textContent = items[this.index_returned]['content'];
-
-
-    div.appendChild(div_head)
-    div3.appendChild(div1)
-    div3.appendChild(div2)
-
-    div.appendChild(div3)
-    div.appendChild(div4)
-
-    
-}
-
 function delete_if_task_exist(){
-
     let div_c = document.getElementsByClassName('edit_task')
-    let div = document.createElement('div');
-    div.setAttribute('class','edit_task scale-up-hor-right');
-
-    div_c.length ? div_c[0].remove() : {}
-        
-    return div 
-
+    div_c.length ? div_c[0].remove() : {} 
 }
 
 function row_label(task){
@@ -77,14 +34,9 @@ function row_label(task){
     empty_div.textContent = task['name'];
     empty_div.setAttribute('name',task.id);
     empty_div.onclick = () =>{
-        
-        let div = delete_if_task_exist()
-
-        //Div Description On Click
+        delete_if_task_exist()
         binary_search(task.id)
-        task_description(div)
-
-        container[0].appendChild(div);
+        card_composition(task)
     }
     return empty_div
     
