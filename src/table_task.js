@@ -63,16 +63,16 @@ function delete_if_task_exist(){
 
 }
 
-function row_label(text,_id){
+function row_label(task){
     let empty_div = document.createElement('div');
-    empty_div.textContent = text;
-    empty_div.setAttribute('name',_id);
+    empty_div.textContent = task['name'];
+    empty_div.setAttribute('name',task.id);
     empty_div.onclick = () =>{
         
         let div = delete_if_task_exist()
 
         //Div Description On Click
-        binary_search(_id)
+        binary_search(task.id)
         task_description(div)
 
         container[0].appendChild(div);
@@ -82,20 +82,21 @@ function row_label(text,_id){
 }
 
 
-function new_row(text, done = 0, _id){
+function new_row(task){
     let div_main = document.createElement('div');
     div_main.setAttribute('class','activities main div_row');
 
     // ROW TEXT LABEL 
-    let empty_div = row_label(text,_id)
+    console.log(task)
+    let empty_div = row_label(task)
     
     //done ? empty_div.setAttribute('class','done') : empty_div.setAttribute('class','undone') 
-    done ? empty_div.style.cssText = "width:100%; text-decoration:line-through;" : empty_div.style.cssText = "width:100%;";
+    task.done ? empty_div.style.cssText = "width:100%; text-decoration:line-through;" : empty_div.style.cssText = "width:100%;";
     div_main.appendChild(empty_div);
     
     // ROW BUTTON 
-    let button_green = new Task_button(div_main,'action_button green', 'fas fa-check-circle',_id, 0)
-    let button_red = new Task_button(div_main,'action_button danger', 'fas fa-times-circle',_id,1)
+    let button_green = new Task_button(div_main,'action_button green', 'fas fa-check-circle',task.id, 0)
+    let button_red = new Task_button(div_main,'action_button danger', 'fas fa-times-circle',task.id,1)
     create_task_button(button_green)
     create_task_button(button_red)
 
@@ -125,8 +126,10 @@ button_type.onclick = function (){
         array.push(div)
         div = document.getElementsByClassName('content')[0].value;
         array.push(div)
+        add_new_task(div)
         
-        div !== '' ? new_row(array[0], null ,add_new_task(array)) : {};       
+       // div !== '' ? new_row(array[0], null ,add_new_task(array)) : {};       
+        div !== '' ? new_row(items[add_new_task(array)]) : {};       
 }
 
 let h3 = document.createElement('h3');

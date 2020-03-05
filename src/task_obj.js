@@ -23,14 +23,15 @@ function add_new_task(div){
     obj.content = String(div[1]);
     items.push(obj);
     localStorage.setItem('div-testinput', JSON.stringify(items));
-    return obj['id']
+    items = JSON.parse(localStorage.getItem('div-testinput') || "[]");
+    return items.length
     
 
 }
 
 function show_task(){
     items.forEach(element => {
-        new_row(element['name'], element['done'], element['id'])
+        new_row(element)
     });
 }
 
