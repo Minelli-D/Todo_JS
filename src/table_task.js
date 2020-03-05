@@ -5,13 +5,6 @@ let div = document.createElement('div');
 div.setAttribute('class',' row_task scale-up-ver-center');
 
 
-function Task_button(div_main, class_button, class_span, _id,delete_var = 0){
-    this.div_main = div_main
-    this.class_button = class_button
-    this.class_span = class_span 
-    this._id = _id
-    this.delete_var = delete_var 
-}
 
 function create_task_button(task_button){
 

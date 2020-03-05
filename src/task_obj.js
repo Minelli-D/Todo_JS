@@ -16,22 +16,6 @@ function edit_date(time){
     return string
 }
 
-// COSTRUCTOR 
-function Task(name_task){
-    this.name = name_task;
-    this.done = 0; 
-    this.delete = 0;
-
-    this.time = new Date('10 Sept 2020');
-    this.time = edit_date(this.time)
-    this.id = Number(_id) ;
-    let app = Number(_id) + 1;
-    
-    this.content = ''
-
-    localStorage.setItem('_last_id',app);
-    _id = app;
-}
 
 
 function add_new_task(div){
