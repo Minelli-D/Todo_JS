@@ -64,7 +64,8 @@ function delete_array(_id){
 }
 
 
-function task_delete(index, _id){
+function task_delete(_id){
+    let index = binary_search(_id)
     items.splice(index,1)
     let div = document.getElementsByName(String(_id));
     div[0].parentElement.remove()

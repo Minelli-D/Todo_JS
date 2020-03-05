@@ -17,7 +17,7 @@ function create_task_button(task_button){
     items = JSON.parse(localStorage.getItem('div-testinput') || "[]");
 
     button_row.onclick = () => {
-        task_button.delete_var ? task_delete(binary_search(task_button._id),task_button._id) : task_done(binary_search(task_button._id))
+        task_button.delete_var ? task_delete(task_button._id) : task_done(binary_search(task_button._id))
     };
 
     button_row.appendChild(span_row)
@@ -87,7 +87,6 @@ function new_row(task){
     div_main.setAttribute('class','activities main div_row');
 
     // ROW TEXT LABEL 
-    console.log(task)
     let empty_div = row_label(task)
     
     //done ? empty_div.setAttribute('class','done') : empty_div.setAttribute('class','undone') 
