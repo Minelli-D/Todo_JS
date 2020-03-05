@@ -28,10 +28,12 @@ function task_description(div){
     //Content 
     //Where
     //Time
-    div1 = document.createElement('div')
-    div2 = document.createElement('div') 
-    div3 = document.createElement('div')      
-    div4 = document.createElement('div')     
+    array = new Array()
+    
+    let div1 = document.createElement('div')
+    let div2 = document.createElement('div') 
+    let div3 = document.createElement('div')      
+    let div4 = document.createElement('div')     
 
     div3.style.cssText = "display:flex"
 
@@ -65,6 +67,7 @@ function delete_if_task_exist(){
 
 function row_label(task){
     let empty_div = document.createElement('div');
+    console.log(task)
     empty_div.textContent = task['name'];
     empty_div.setAttribute('name',task.id);
     empty_div.onclick = () =>{
@@ -85,7 +88,7 @@ function row_label(task){
 function new_row(task){
     let div_main = document.createElement('div');
     div_main.setAttribute('class','activities main div_row');
-
+    console.log('aa')
     // ROW TEXT LABEL 
     let empty_div = row_label(task)
     
@@ -125,10 +128,7 @@ button_type.onclick = function (){
         array.push(div)
         div = document.getElementsByClassName('content')[0].value;
         array.push(div)
-        add_new_task(div)
-        
-       // div !== '' ? new_row(array[0], null ,add_new_task(array)) : {};       
-        div !== '' ? new_row(items[add_new_task(array)]) : {};       
+        div !== '' ? new_row(items[add_new_task(array)-1]) : console.log('null');       
 }
 
 let h3 = document.createElement('h3');
