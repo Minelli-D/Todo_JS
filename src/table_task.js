@@ -60,7 +60,8 @@ function new_row(task){
     create_task_button(button_red)
 
     // Create column two 
-    let column1 = document.getElementsByClassName('column ltwo');
+    let column1 = document.getElementsByClassName('ltwo_style');
+   
     column1[0].appendChild(div_main);
 
 

@@ -1,4 +1,16 @@
 
+.task_input{
+  margin-bottom: 20px;
+}
+
+.task_head{
+  display:flex;
+  justify-content:center; flex:1;
+  margin-bottom: 30px;
+  font-size: 40px;
+  font-weight: bold;
+}
+
 .header{
     font-size: 70px;
     justify-content: center;
@@ -24,11 +36,19 @@ flex:1;
 }
 .ltwo{
   flex:2 ;
+  
+}
+.ltwo_style{
   margin: 20px;
   background-color: #fdfdfd;
   border-radius: 20px;
   padding: 20px;
   box-shadow: 0px 1px 6px
+
+}
+
+.task_style{
+  background-color: violet;
 }
 .activities{
     display: flex;

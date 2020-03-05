@@ -9,7 +9,7 @@ function card_head(string){
     div_container.style.cssText = "display:flex;"
 
     let div_head = document.createElement('div')
-    div_head.style.cssText = "display:flex; justify-content:center; flex:1;"
+    div_head.setAttribute('class','task_head')
     div_head.textContent = string
 
 
@@ -38,7 +38,7 @@ function card_input(){
 function card_content(span,content){
     let div_container = document.createElement('div')
     let div_container_input = document.createElement('div')
-
+    div_container_input.setAttribute('class','task_input')
     let div_span = document.createElement('span')
     div_span.textContent = span
 
@@ -77,8 +77,8 @@ function card_composition(task){
     array.push(card_head('Task Type'))
     /*array.push(card_body())
     array.push(card_input())*/
-    array.push(card_content('name',task.name))
-    array.push(card_content('content',task.content))
+    array.push(card_content('Name',task.name))
+    array.push(card_content('Content',task.content))
     append_to_element(array,box)
     container[0].appendChild(box)
 }
