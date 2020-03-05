@@ -29,7 +29,12 @@ function task_description(div){
     //Where
     //Time
     array = new Array()
-    
+    let div_head = document.createElement('div')
+
+    let h1_head = document.createElement('h2')
+    h1_head.textContent = 'test'
+    div_head.appendChild(h1_head)
+ 
     let div1 = document.createElement('div')
     let div2 = document.createElement('div') 
     let div3 = document.createElement('div')      
@@ -44,6 +49,8 @@ function task_description(div){
     div2.textContent = items[this.index_returned]['time'][4];
     div4.textContent = items[this.index_returned]['content'];
 
+
+    div.appendChild(div_head)
     div3.appendChild(div1)
     div3.appendChild(div2)
 
@@ -67,7 +74,6 @@ function delete_if_task_exist(){
 
 function row_label(task){
     let empty_div = document.createElement('div');
-    console.log(task)
     empty_div.textContent = task['name'];
     empty_div.setAttribute('name',task.id);
     empty_div.onclick = () =>{
@@ -88,7 +94,6 @@ function row_label(task){
 function new_row(task){
     let div_main = document.createElement('div');
     div_main.setAttribute('class','activities main div_row');
-    console.log('aa')
     // ROW TEXT LABEL 
     let empty_div = row_label(task)
     
@@ -128,7 +133,7 @@ button_type.onclick = function (){
         array.push(div)
         div = document.getElementsByClassName('content')[0].value;
         array.push(div)
-        div !== '' ? new_row(items[add_new_task(array)-1]) : console.log('null');       
+        div !== '' ? new_row(items[add_new_task(array)-1]) : {};       
 }
 
 let h3 = document.createElement('h3');
