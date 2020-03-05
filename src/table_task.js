@@ -5,24 +5,30 @@ let div = document.createElement('div');
 div.setAttribute('class',' row_task scale-up-ver-center');
 
 
+function Task_button(div_main, class_button, class_span, _id,delete_var = 0){
+    this.div_main = div_main
+    this.class_button = class_button
+    this.class_span = class_span 
+    this._id = _id
+    this.delete_var = delete_var 
+}
 
-
-function create_task_button(div_main, class_button, class_span, _id,delete_var = 0){
+function create_task_button(task_button){
 
     let button_row = document.createElement('button')
-    button_row.setAttribute('class',class_button)
+    button_row.setAttribute('class',task_button.class_button)
 
     let span_row = document.createElement('span')
-    span_row.setAttribute('class',class_span)
+    span_row.setAttribute('class',task_button.class_span)
 
     items = JSON.parse(localStorage.getItem('div-testinput') || "[]");
 
     button_row.onclick = () => {
-        delete_var ? task_delete(binary_search(_id),_id) :task_done(binary_search(_id))
+        task_button.delete_var ? task_delete(binary_search(task_button._id),task_button._id) : task_done(binary_search(task_button._id))
     };
 
     button_row.appendChild(span_row)
-    div_main.appendChild(button_row);
+    task_button.div_main.appendChild(button_row);
 }
 
 function task_description(div){
@@ -95,8 +101,10 @@ function new_row(text, done = 0, _id){
     div_main.appendChild(empty_div);
     
     // ROW BUTTON 
-    create_task_button(div_main,'action_button green', 'fas fa-check-circle',_id, 0)
-    create_task_button(div_main,'action_button danger', 'fas fa-times-circle',_id,1)
+    let button_green = new Task_button(div_main,'action_button green', 'fas fa-check-circle',_id, 0)
+    let button_red = new Task_button(div_main,'action_button danger', 'fas fa-times-circle',_id,1)
+    create_task_button(button_green)
+    create_task_button(button_red)
 
     // Create column two 
     let column1 = document.getElementsByClassName('column ltwo');
