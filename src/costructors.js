@@ -14,7 +14,7 @@ function Task(name_task){
     localStorage.setItem('_last_id',app);
     _id = app;
 }
-//Costructor
+
 function Task_button(div_main, class_button, class_span, _id,delete_var = 0){
     this.div_main = div_main
     this.class_button = class_button
