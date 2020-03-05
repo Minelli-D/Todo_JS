@@ -5,8 +5,7 @@ var index_returned = 0
 // BINARY SEARCH FOR SET CUR _ID
 function binary_search(_id){
     items.forEach(function(element,index) {
-        if(element['id'] === Number(_id))
-            this.index_returned = index
+        element['id'] === Number(_id) ? this.index_returned = index : {}
     })
     return this.index_returned
 }
@@ -17,23 +16,6 @@ function edit_date(time){
     return string
 }
 
-// COSTRUCTOR 
-function Task(name_task){
-    this.name = name_task;
-    this.done = 0; 
-    this.delete = 0;
-
-    this.time = new Date('10 Sept 2020');
-    this.time = edit_date(this.time)
-    this.id = Number(_id) ;
-    let app = Number(_id) + 1;
-
-
-    this.content = ''
-
-    localStorage.setItem('_last_id',app);
-    _id = app;
-}
 
 
 function add_new_task(div){
@@ -41,14 +23,15 @@ function add_new_task(div){
     obj.content = String(div[1]);
     items.push(obj);
     localStorage.setItem('div-testinput', JSON.stringify(items));
-    return obj['id']
+    items = JSON.parse(localStorage.getItem('div-testinput') || "[]");
+    return items.length
     
 
 }
 
 function show_task(){
     items.forEach(element => {
-        new_row(element['name'], element['done'], element['id'])
+        new_row(element)
     });
 }
 
@@ -59,15 +42,11 @@ function task_done(_id){
         items[index_returned]['done'] = 0;
         let div = document.getElementsByName(items[index_returned]['id']);
         div[0].style.cssText = "width:100%; text-decoration:none"
-        console.log(div)
     }
     else{
         items[index_returned]['done'] = 1;
         let div = document.getElementsByName(items[index_returned]['id']);
-        console.log(div)
-
         div[0].style.cssText = "width:100%; text-decoration:line-through"
-
     }
     localStorage.setItem('div-testinput', JSON.stringify(items));
 }
@@ -85,7 +64,8 @@ function delete_array(_id){
 }
 
 
-function task_delete(index, _id){
+function task_delete(_id){
+    let index = binary_search(_id)
     items.splice(index,1)
     let div = document.getElementsByName(String(_id));
     div[0].parentElement.remove()

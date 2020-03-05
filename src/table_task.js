@@ -6,39 +6,34 @@ div.setAttribute('class',' row_task scale-up-ver-center');
 
 
 
+function create_task_button(task_button){
 
-function create_task_button(div_main, class_button, class_span, _id,delete_var = 0){
+    let button_row = document.createElement('button')
+    button_row.setAttribute('class',task_button.class_button)
 
-    //let button_div_row = document.createElement('div');
-    let button_row = document.createElement('button');
-    let span_row = document.createElement('span');
+    let span_row = document.createElement('span')
+    span_row.setAttribute('class',task_button.class_span)
 
     items = JSON.parse(localStorage.getItem('div-testinput') || "[]");
 
-    button_row.setAttribute('class',class_button)
-    button_row.onclick = function () {
-        if(delete_var){
-            task_delete(binary_search(_id),_id);
-        }
-        else{
-            task_done(binary_search(_id));
-        }
+    button_row.onclick = () => {
+        task_button.delete_var ? task_delete(task_button._id) : task_done(binary_search(task_button._id))
     };
-    span_row.setAttribute('class',class_span)
 
     button_row.appendChild(span_row)
-    //button_div_row.appendChild(button_row)
-    div_main.appendChild(button_row);
+    task_button.div_main.appendChild(button_row);
 }
 
 function task_description(div){
     //Content 
     //Where
     //Time
-    div1 = document.createElement('div')
-    div2 = document.createElement('div') 
-    div3 = document.createElement('div')      
-    div4 = document.createElement('div')     
+    array = new Array()
+    
+    let div1 = document.createElement('div')
+    let div2 = document.createElement('div') 
+    let div3 = document.createElement('div')      
+    let div4 = document.createElement('div')     
 
     div3.style.cssText = "display:flex"
 
@@ -58,23 +53,31 @@ function task_description(div){
     
 }
 
-function row_label(text,_id){
+function delete_if_task_exist(){
+
+    let div_c = document.getElementsByClassName('edit_task')
+    let div = document.createElement('div');
+    div.setAttribute('class','edit_task scale-up-hor-right');
+
+    div_c.length ? div_c[0].remove() : {}
+        
+    return div 
+
+}
+
+function row_label(task){
     let empty_div = document.createElement('div');
-    empty_div.textContent = text;
-    empty_div.setAttribute('name',_id);
+    console.log(task)
+    empty_div.textContent = task['name'];
+    empty_div.setAttribute('name',task.id);
     empty_div.onclick = () =>{
         
-        let div_c = document.getElementsByClassName('edit_task')
-        if(div_c.length){
-            div_c[0].remove()
-            one = 1     
-        }
-        let div = document.createElement('div');
-        div.setAttribute('class','edit_task scale-up-hor-right');
+        let div = delete_if_task_exist()
+
         //Div Description On Click
-        binary_search(_id)
+        binary_search(task.id)
         task_description(div)
-        //div.textContent = items[index_returned]['name']
+
         container[0].appendChild(div);
     }
     return empty_div
@@ -82,19 +85,22 @@ function row_label(text,_id){
 }
 
 
-function new_row(text, done = 0, _id){
+function new_row(task){
     let div_main = document.createElement('div');
     div_main.setAttribute('class','activities main div_row');
-
+    console.log('aa')
     // ROW TEXT LABEL 
-    let empty_div = row_label(text,_id)
+    let empty_div = row_label(task)
     
-    done ? empty_div.style.cssText = "width:100%; text-decoration:line-through" : empty_div.style.cssText = "width:100%;";
+    //done ? empty_div.setAttribute('class','done') : empty_div.setAttribute('class','undone') 
+    task.done ? empty_div.style.cssText = "width:100%; text-decoration:line-through;" : empty_div.style.cssText = "width:100%;";
     div_main.appendChild(empty_div);
     
     // ROW BUTTON 
-    create_task_button(div_main,'action_button green', 'fas fa-check-circle',_id, 0)
-    create_task_button(div_main,'action_button danger', 'fas fa-times-circle',_id,1)
+    let button_green = new Task_button(div_main,'action_button green', 'fas fa-check-circle',task.id, 0)
+    let button_red = new Task_button(div_main,'action_button danger', 'fas fa-times-circle',task.id,1)
+    create_task_button(button_green)
+    create_task_button(button_red)
 
     // Create column two 
     let column1 = document.getElementsByClassName('column ltwo');
@@ -107,8 +113,10 @@ function new_row(text, done = 0, _id){
 //      ADD NEW ITEM VAR TYPE
 let input_type = document.createElement('input');
 input_type.className = 'input_type';
+
 let input_type_content = document.createElement('input');
 input_type_content.setAttribute('class','content');
+
 let button_type = document.createElement('button');
 button_type.classList = 'button_type';
 button_type.textContent = 'save';
@@ -120,28 +128,21 @@ button_type.onclick = function (){
         array.push(div)
         div = document.getElementsByClassName('content')[0].value;
         array.push(div)
-        if(div != ''){
-                new_row(array[0], null ,add_new_task(array));
-            }
-        else
-            console.log('null');
-        
+        div !== '' ? new_row(items[add_new_task(array)-1]) : console.log('null');       
 }
 
-let h3 = document.createElement('h3')
-h3.textContent = 'Add Activities'
-let div_head = document.createElement('div')
-div_head.style.justifyContent = 'center'
-div_head.style.margin = '-20px'
-div_head.style.marginBottom = '-5px'
+let h3 = document.createElement('h3');
+h3.textContent = 'Add Activities';
+let div_head = document.createElement('div');
+div_head.setAttribute('class','row div_head');
+div_head.appendChild(h3);
+
 
 //    ACTION ITEM
 function add_new_item(){
 
-    div_head.appendChild(h3)
     let div1 = document.createElement('div')
     let div2 = document.createElement('div')
-    div_head.setAttribute('class','row');
     div1.setAttribute('class','row');
     div2.setAttribute('class','row');
 
